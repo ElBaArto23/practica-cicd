@@ -1,9 +1,18 @@
 name: CI
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  prueba:
+  pruebas:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: python hola.py
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check
+      - run: terraform init
+      - run: terraform validate
+      - run: terraform plan 
