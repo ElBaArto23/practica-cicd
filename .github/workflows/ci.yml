@@ -2,11 +2,12 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  pruebas:
+  prueba:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: python hola.py
+
   terraform:
     runs-on: ubuntu-latest
     steps:
@@ -15,4 +16,4 @@ jobs:
       - run: terraform fmt -check
       - run: terraform init
       - run: terraform validate
-      - run: terraform plan 
+      - run: terraform plan
